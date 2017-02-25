@@ -1,5 +1,4 @@
 import urllib2
-import tweepy
 
 page = urllib2.urlopen("http://www.theverge.com")
 html = page.read()
