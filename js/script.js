@@ -6,7 +6,7 @@ function login() {
   lastName = lastName.replace(/\s+/g, '');
 
   var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://127.0.0.1:5000/taken/Jason?Argonauts", false);
+  xhttp.open("GET", "http://127.0.0.1:5000/taken/firstName=Jason&lastName=Argonaut", false);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
   var response = JSON.parse(xhttp.responseText);
