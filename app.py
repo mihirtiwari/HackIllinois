@@ -7,14 +7,13 @@ app = Flask(__name__)
 def index():
     return "Hello World!"
 
-@app.route('/taken/<firstName>?<lastName>', methods=['GET'])
+@app.route('/taken/firstName=<firstName>&lastName=<lastName>', methods=['GET'])
 def get_drugs_taken(firstName, lastName):
     drug = api.get_drug(firstName, lastName)
     return jsonify({'drug': drug})
 
-# @app.route('/combine', methods=['POST'])
-# def combined_drugs():
-#
+@app.route('/combine', methods=['POST'])
+def combined_drugs():
 
 
 if __name__ == "__main__":
