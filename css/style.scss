@@ -1,11 +1,16 @@
+.navbar-default{
+  color: #637dff;
+  border-radius: 0 !important;
+}
+
 .header{
   text-align: center;
   padding: 60px;
 }
 
 .search{
-  padding-right: 150px;
-  padding-left: 150px;
+  padding-right: 30px;
+  padding-left: 30px;
   text-align: center;
 }
 
@@ -22,8 +27,12 @@
   margin-top: 60px;
 }
 
-.drugs{
+.medication{
   padding: 60px;
-  padding-left: 100px;
-  padding-right: 80px;
+  background-color: #f7f7f7;
+}
+
+.drugs{
+  padding-top: 40px;
+  padding-right: 40px;
 }

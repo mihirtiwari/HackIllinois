@@ -10,23 +10,28 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-	<div class="header">
-		<h1>Patient: #</h1>
+	<nav class="navbar navbar-inverse bg-inverse fixed-top">
+  	<a class="navbar-brand" href="#" style="color:white">Navbar</a>
+	</nav>
+	<div class="main col-md-9">
+		<div class="header">
+			<h1>Patient: #</h1>
+		</div>
+
+		<div class="search">
+				<input id="search" type="text" class="form-control" name="search" placeholder="Search...">
+				<button id="submit" type="button" class="btn" name="button">Submit</button>
+		</div>
 	</div>
 
-	<div class="search">
-			<input id="search" type="text" class="form-control" name="search" placeholder="Search...">
-			<button id="submit" type="button" class="btn" name="button">Submit</button>
-	</div>
-
-	<div class="drugs">
-		<div class="col-md-3">
-			<div class="card">
-			  <h3 class="card-header">Featured</h3>
+	<div class="medication col-md-3">
+		<h3>Current Medication</h3>
+		<div class="drugs">
+			<div class="card w-50">
 			  <div class="card-block">
-			    <h4 class="card-title">Special title treatment</h4>
+			    <h3 class="card-title">Card title</h3>
 			    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			    <a href="#" class="btn btn-primary">Button</a>
 			  </div>
 			</div>
 		</div>
