@@ -1,6 +1,8 @@
 function login() {
   var firstName = document.getElementById("firstName").value;
+  firstName = firstName.replace(/\s+/g, '');
   var lastName = document.getElementById("lastName").value
+  lastName = lastName.replace(/\s+/g, '');
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", '/server', true);
