@@ -3,6 +3,7 @@ import httplib, urllib, base64, json
 headers = {
     # Request headers
     'Content-Type': 'application/json',
+    # In base 64
     'Authorization': 'Basic MTdlYmU3MjQzNGE4NDAzOWEwZTQ4OTAwMThiNmM5OTc6OUFBQzI4OThDQUIxMTlCNzlFOTk0NDg5NzBGQzVBMDg3MjlEMTY4RTcyNDk3QzA5MTY2OEE4QjVDQkE2Rjc0RQ=='
 }
 
@@ -21,7 +22,7 @@ body = {
             "Properties": {
                 "MyICD10Code": "I21.3"
             }
-        },
+        } ,
         {
             "Code": "2",
             "FreeText": "sty"
