@@ -1,43 +1,17 @@
-import httplib, urllib, base64, json
+import requests, json
 
-headers = {
-    # Request headers
-    'Content-Type': 'application/json',
-    # In base 64
-    'Authorization': 'Basic MTdlYmU3MjQzNGE4NDAzOWEwZTQ4OTAwMThiNmM5OTc6OUFBQzI4OThDQUIxMTlCNzlFOTk0NDg5NzBGQzVBMDg3MjlEMTY4RTcyNDk3QzA5MTY2OEE4QjVDQkE2Rjc0RQ=='
-}
+def get_drug(firstName, lastName):
+    headers = {'Accept': 'application/json'}
+    req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
 
-# params = urllib.urlencode({
-#     # Request parameters
-# })
+    beginIndex = req.text.find("id") + 5
+    endIndex = req.text.find("care") - 3
+    token = req.text[beginIndex:endIndex]
 
-body = {
-    "Properties": {
-        "PatientId": "205028345"
-    },
-    "Problems": [
-        {
-            "Code": "1",
-            "FreeText": "Heart Attack",
-            "Properties": {
-                "MyICD10Code": "I21.3"
-            }
-        } ,
-        {
-            "Code": "2",
-            "FreeText": "sty"
-        }
-    ]
+    r = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/MedicationOrder?patient=" + token, headers=headers)
 
-}
+    beginIndex = r.text.find("medicationReference") + 33
+    endIndex = r.text.find("dosageInstruction") - 99
+    string = r.text[beginIndex:endIndex]
 
-try:
-    conn = httplib.HTTPSConnection('ipl-nonproduction-customer_validation.e-imo.com')
-    conn.request("POST", "/api/v3/actions/categorize", str(body), headers)
-    response = conn.getresponse()
-    data = response.read()
-    # j = json.loads(response.text)
-    print(data)
-    conn.close()
-except Exception as e:
-    print(e)
+    return string
