@@ -1,4 +1,4 @@
-# Contributing to Prescription Merge Conflict(PMC)
+# Contributing to Prescription Merge Conflict (PMC)
 
 ## Contributor License Agreement
 We'd love to accept your patches! Before we can take them, we want you to accept our policy: By submitting a pull request, you present that you have the right to license your contribution to MyDoctor and its community, and agree by submitting the patch that your contributions are licensed under the MIT license.
