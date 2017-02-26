@@ -29,8 +29,17 @@ def combined_drugs(drug, check_drug):
     description = api.get_danger(meds)
     return jsonify({'description': description})
 
+# @app.route('/combine/drug=<drug>&check_drug=<check_drug>', methods=['GET'])
+# def combined_drugs(drug, check_drug):
+#     meds = []
+#     meds.append(drug)
+#     meds.append(check_drug)
+#
+#     description = api.get_danger(meds)
+#     return jsonify({'description': description})
+
 def parse(s):
-    split = s.split('/')
+    split = s.split('0')
     list = []
     for p in split:
         n = ''
