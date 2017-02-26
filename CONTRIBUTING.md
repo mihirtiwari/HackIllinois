@@ -8,7 +8,9 @@ You are acknowledging that you have a right to license your contribution to this
 
 ## Current Planned Features
 * Be able to use other patient data such as weight, age, sex, etc. to make a better prediction about drug interactions
-* Make a score for th severity of a drug interaction
+* Make a score for the severity of a drug interaction in order to give the doctor a measureable scale
+* Speed Improvements
+* UI Improvements
 
 ## Style Guide / Coding conventions 
 
