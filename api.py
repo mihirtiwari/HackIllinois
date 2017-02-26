@@ -2,19 +2,6 @@ import requests, json
 import xml.etree.ElementTree as ET
 
 def get_drug(firstName, lastName):
-    # headers = {'Accept': 'application/json'}
-    # req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
-    #
-    # beginIndex = req.text.find("id") + 5
-    # endIndex = req.text.find("care") - 3
-    # token = req.text[beginIndex:endIndex]
-    #
-    # r = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/MedicationOrder?patient=" + token, headers=headers)
-    #
-    # beginIndex = r.text.find("medicationReference") + 33
-    # endIndex = r.text.find("dosageInstruction") - 99
-    # string = r.text[beginIndex:endIndex]
-
     #new medication code
     headers = {'Accept': 'application/json'}
     req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
@@ -62,3 +49,34 @@ def get_danger(drugs):
     description = interactionPair['description']
 
     return description
+
+def numbers(medication):
+    base_url = "http://184.73.124.73:80/PortalWebService/api/v2/product/allergenIT/search"
+    headers = {
+        'Authorization': "Basic MTdlYmU3MjQzNGE4NDAzOWEwZTQ4OTAwMThiNmM5OTczZTlBQUMyODk4Q0FCMTE5Qjc5RTk5NDQ4OTcwRkM1QTA4NzI5RDE2OEU3MjQ5N0MwOTE2NjhBOEI1Q0JBNkY3NEU=",
+        'Content-Type' : 'application/json',
+        'Accept': 'application/json'
+    }
+
+    theMedication = medication
+
+    body = {
+        "searchTerm": theMedication,
+        "numberOfResults": 20,
+        "dymSize": 0,
+        "page": 1,
+        "filterByPrecedence": 1,
+        "filterByExpression": "",
+        "distinctBy": "",
+        "properties": "",
+        "showFields": "",
+        "clientApp": "AMIA Application",
+        "clientAppVersion": "1.0",
+        "siteId": "Hopspital ABC",
+        "userId": "Admin"
+    }
+
+    r = requests.post(base_url, headers=headers, json=body)
+    code = r.json()["SearchTermResponse"]["items"][0]["code"]
+
+    return code

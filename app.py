@@ -24,5 +24,11 @@ def combined_drugs(drug, check_drug):
 
     return jsonify({'description': description})
 
+@app.route('/code/med=<medication>', methods=['GET'])
+def code(medication):
+    code = api.numbers(medication)
+
+    return jsonify({'code': code})
+
 if __name__ == "__main__":
     app.run(debug=True)
