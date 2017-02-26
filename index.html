@@ -69,26 +69,18 @@
 	function checkMedication() {
 		document.getElementById("alerts").innerHTML = ""
 
-		var drug;
 		var newMedication = document.getElementById("search").value;
+		var drug = medication[0].substring(medication[0].indexOf("(") + 1, medication[0].indexOf(")"));
 
-		for (var i = 0; i < medication.length; i++) {
-			try {
-				drug = medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")"));
-				var xhttp = new XMLHttpRequest();
-				xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
-				xhttp.setRequestHeader("Content-type", "application/json");
-				xhttp.send();
-				var response = JSON.parse(xhttp.responseText);
-				generateAlert(response.description);
-
-				setTimeout(1000);
-			} catch(err){
-
-			}
-		}
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+		var response = JSON.parse(xhttp.responseText);
+		generateAlert(response.description);
 
 	}
+
 	</script>
 
 </body>
