@@ -4,9 +4,12 @@
 	<meta charset="utf-8">
 
 	<title>Prescription Advisor</title>
+
 	<link rel="stylesheet" href="./css/style.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">	<script src="./js/script.js"></script>
   <script src="js/script.js"></script>
+	<script src="js/index.js"></script>
+
 </head>
 <body>
 
@@ -17,14 +20,18 @@
 	<div class="row">
 	<div class="main col-md-9">
 		<div class="header">
-			<h1><script>
+			<h1 id="name"><script>
+					// Pull patient name from login
 					var data = localStorage.getItem('_name');
 			    if (!data){
 						document.location.href = 'error/404.html';
 					};
-			    localStorage.removeItem('_name');
-			    data = atob(data);
+			    localStorage.removeItem('_name'); // Remove name from local storage
+
+					//convert back to readable format
+					data = atob(data);
 			    let name = JSON.parse(data);
+
 					document.write("Patient: " + name.First + " " + name.Last)
 			</script></h1>
 		</div>
@@ -34,60 +41,31 @@
 		</div>
 
 		<div id="alerts">
-
+			<!-- Medication alerts will be generated here -->
 		</div>
 	</div>
 
 	<div class="medication col-md-3">
 		<h3>Current Medication</h3>
 		<div id="drugs">
+			<!-- Current medication will be generated here -->
 		</div>
 	</div>
 	</div>
 
-	<!-- Users medication -->
 	<script type="text/javascript">
+	// Get json from list of medication stored from login
 	var drugs = localStorage.getItem('_drugs');
 	localStorage.removeItem('_drugs');
-	if(!drugs){
-	}
 	drugs = atob(drugs);
+
 	var medication = JSON.parse(drugs);
 	var id = medication.code;
 	medication = medication.drug
+
 	for (var i = 0; i < medication.length; i++) {
 		generateCard(id[i], medication[i]);
 	}
-
-	// Send New Medication
-	function checkMedication() {
-		document.getElementById("alerts").innerHTML = ""
-		var drug = "";
-		var substring = "";
-		var newMedication = document.getElementById("search").value;
-		for (var i = 0; i < medication.length; i++) {
-			if(i != medication.lenght - 1){
-				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")")) + "0";
-
-			} else {
-				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")"));
-			}
-		}
-
-		drug = drug.split(' ').join(',');
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
-		var response = JSON.parse(xhttp.responseText);
-		var description = response.description;
-		for (var key in description) {
-		  if (description.hasOwnProperty(key)) {
-				generateAlert(key + ": " + description[key]);
-		  }
-		}
-	}
-
 	</script>
 
 </body>

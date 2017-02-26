@@ -3,18 +3,21 @@
 <head>
 	<meta charset="utf-8">
 
-	<title></title>
-	<!-- Making prescriptions smarter -->
+	<title>Prescription Advisor</title>
+
 	<link rel="stylesheet" href="./css/style.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">	<script src="./js/script.js"></script>
   <script src="js/script.js"></script>
+	<script src="js/login.js"></script>
 </head>
 <body>
 
+	<!-- Navbar -->
 	<nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
   	<a class="navbar-brand" href="login.html" style="color:white">Prescription Advisor</a>
 	</nav>
 
+	<!-- Login Form -->
 	<div class="parent">
 		<div class="login-form">
       <h2>Patient Information:</h2>
@@ -28,28 +31,5 @@
 		</div>
   </div>
 
-  <script>
-  function login() {
-    var firstName = document.getElementById("firstName").value;
-    firstName = firstName.replace(/\s+/g, '');
-
-    var lastName = document.getElementById("lastName").value;
-    lastName = lastName.replace(/\s+/g, '');
-
-    try{
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", "http://127.0.0.1:5000/taken/firstName=" + firstName + "&lastName=" + lastName, false);
-      xhttp.setRequestHeader("Content-type", "application/json");
-      xhttp.send();
-      var response = JSON.parse(xhttp.responseText);
-      saveName(firstName, lastName);
-      saveJSON(response);
-      document.location.href = 'index.html';
-    } catch (err) {
-      document.location.href = 'error/503.html'
-    }
-
-  }
-  </script>
 </body>
 </html>
