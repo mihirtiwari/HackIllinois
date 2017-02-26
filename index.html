@@ -80,8 +80,12 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 		var response = JSON.parse(xhttp.responseText);
-		generateAlert(response.description);
-
+		var description = response.description;
+		for (var key in description) {
+		  if (description.hasOwnProperty(key)) {
+				generateAlert(key + ": " + description[key]);
+		  }
+		}
 	}
 
 	</script>
