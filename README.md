@@ -6,14 +6,14 @@ Install pip and Python 2.7
 
 ### Prerequisites
 #### Libraries
-* A requirments.txt file has been provided to download all of the required python libraries 3
+* A requirements.txt file has been provided to download all of the required python libraries 3
 * Download required libraries with the following command
 <br>
 <br>
 <pre>pip install -r requirements.txt</pre>
 
 ## Usage
-To run the flask server run the following command
+To run the Flask server run the following command
 <pre>python app.py</pre>
 1. Everytime a change is made to any file the server is updated automatically
 <br>
@@ -24,19 +24,19 @@ To run the flask server run the following command
 4. In order to view the website open the login.html file with a browser of your choice
 
 ## API Endpoints
-####/taken/firstName=<firstName>&lastName=<lastName>
+####/taken/firstName="firstName"&lastName="lastName"
 <strong>Description:</strong> Takes name of patient and returns an array of the names of medication being taken and their lexicographical codes
 <br>
 <strong>Method:</strong> GET
 <br>
-####/combine/drug=<drug>&check_drug=<check_drug>
+####/combine/drug="drug"&check_drug="check_drug"
 <strong>Description:</strong> Takes all currently prescribed medication and newly proposed medication and returns the descriptions of their potential interactions
 <br>
 <strong>Method:</strong> GET
 <br>
-<strong>NOTE:</strong> When entering in drug names separate current drug names by 0
+<strong>NOTE:</strong> When entering in drug names separate current drug names by 0. There can be no spaces in drug names
 
-## Contributors
+## Contributors and Contributing
 Link to Contributors: <a href="CONTRIBUTORS.md">CONTRIBUTORS.md</a>
 <br>
 Link to Contributing: <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>
