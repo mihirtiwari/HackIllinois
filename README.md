@@ -10,7 +10,7 @@ A requirments.txt file has been provided to download all of the required python 
 Download required libraries with the following command
 <br>
 run the following command
-<pre>pip install -r requirments</pre>
+<pre>pip install -r requirments.txt</pre>
 
 ## Usage
 To run the flask server run the following command
