@@ -62,16 +62,19 @@
 	// Send New Medication
 	function checkMedication() {
 		document.getElementById("alerts").innerHTML = ""
-		var drug;
+		var drug = "";
+		var substring = "";
 		var newMedication = document.getElementById("search").value;
 		for (var i = 0; i < medication.length; i++) {
 			if(i != medication.lenght - 1){
-				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")")) + "/";
+				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")")) + "0";
+
 			} else {
 				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")"));
 			}
 		}
 
+		drug = drug.split(' ').join(',');
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
 		xhttp.setRequestHeader("Content-type", "application/json");
