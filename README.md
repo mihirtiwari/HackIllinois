@@ -4,14 +4,11 @@ The PMC is able to pull up a patient's past medication history in order to analy
 ## Installation
 Install pip and Python 2.7
 
-### Prerequesites
+### Prerequisites
 #### Libraries
-A requirments.txt file has been provided to download all of the required python libraries 3
-<br>
-Download required libraries with the following command
-<br>
-run the following command
-<pre>pip install -r requirments.txt</pre>
+* A requirments.txt file has been provided to download all of the required python libraries 3
+* Download required libraries with the following command
+<pre>pip install -r requirements.txt</pre>
 
 ## Usage
 To run the flask server run the following command
@@ -35,7 +32,7 @@ To run the flask server run the following command
 <br>
 <strong>Method:</strong> GET
 <br>
-<strong>NOTE:</strong> When entering in drug names seperate current drug names by 0
+<strong>NOTE:</strong> When entering in drug names separate current drug names by 0
 
 ## Contributors
 Link to Contributors: <a href="CONTRIBUTORS.md">CONTRIBUTORS.md</a>
