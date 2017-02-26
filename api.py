@@ -1,24 +1,14 @@
 import requests, json
 import xml.etree.ElementTree as ET
 
+"""
+Gets all the drugs being taken by the patient and returns it as a list
+"""
 def get_drug(firstName, lastName):
-
-    # headers = {'Accept': 'application/json'}
-    # req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
-    #
-    # beginIndex = req.text.find("id") + 5
-    # endIndex = req.text.find("care") - 3
-    # token = req.text[beginIndex:endIndex]
-    #
-    # r = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/MedicationOrder?patient=" + token, headers=headers)
-    #
-    # beginIndex = r.text.find("medicationReference") + 33
-    # endIndex = r.text.find("dosageInstruction") - 99
-    # string = r.text[beginIndex:endIndex]
-
     headers = {'Accept': 'application/json'}
     req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
 
+    # need to find a more reliable way
     beginIndex = req.text.find("id") + 5
     endIndex = req.text.find("care") - 3
     token = req.text[beginIndex:endIndex]
@@ -31,16 +21,22 @@ def get_drug(firstName, lastName):
 
     meds = []
 
+    # gets all the drugs and puts them into a list
     for entries in array:
         meds.append(entries["resource"]["medicationReference"]["display"])
 
     return meds
 
+"""
+Gets the RXNormId based on the colloquial name of the drug. If this doesn't exist,
+then it returns 0
+"""
 def get_normid(drug):
     headers = {'Accept': 'application/json'}
     req = requests.get('https://rxnav.nlm.nih.gov/REST/rxcui?name=' + drug, headers)
 
     root = ET.fromstring(req.text)
+    # makes the check that the rxnormId exists
     try:
         normId = root[0][1].text
     except IndexError:
@@ -48,6 +44,12 @@ def get_normid(drug):
 
     return normId
 
+"""
+Returns a description of the interactions between each drug being taken by the
+patient and the drug the doctor wants to prescribe. Any drug that does not have
+this information is not included. The description is sent as a dictionary with
+the key as which drugs are being looked at and the effect as the value
+"""
 def get_danger(drugs):
     headers = {'Accept': 'application/json'}
     des = {}
@@ -57,14 +59,14 @@ def get_danger(drugs):
 
         normOne = get_normid(drug) #normId of drug to check
         normTwo = get_normid(check_drug) #normId of drug to be compared to
+        # make sure normIds exist
         if (normOne is not 0 and normTwo is not 0):
-    # normOne = get_normid(drugs[0])
-    # normTwo = get_normid(drugs[1])
             req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
 
             response = req.json()
             description = ''
 
+            # makes sure not to include drugs that don't have the information
             if 'fullInteractionTypeGroup' in response:
 
                 interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
@@ -77,6 +79,9 @@ def get_danger(drugs):
 
     return des
 
+"""
+Gets the lexographical number for the medication that is passed in
+"""
 def numbers(medication):
     base_url = "http://184.73.124.73:80/PortalWebService/api/v2/product/allergenIT/search"
     headers = {
@@ -108,6 +113,9 @@ def numbers(medication):
 
     return code
 
+"""
+Gets the colloquial names of all the drugs only without their chemical names
+"""
 def get_drug_name(drugs):
     names = []
     for d in drugs:
