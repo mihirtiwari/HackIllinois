@@ -15,6 +15,24 @@ def get_drug(firstName, lastName):
     endIndex = r.text.find("dosageInstruction") - 99
     string = r.text[beginIndex:endIndex]
 
+    #new medication code
+    headers = {'Accept': 'application/json'}
+    req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + "Argonaut" + "&given=" + "Jason", headers=headers)
+
+    beginIndex = req.text.find("id") + 5
+    endIndex = req.text.find("care") - 3
+    token = req.text[beginIndex:endIndex]
+
+    response = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/MedicationOrder?patient=" + token, headers=headers)
+
+    json_data = json.loads(response.text)
+
+    array = json_data["entry"]
+
+    for entries in array:
+        print(entries["resource"]["medicationReference"]["display"])
+    #------------------
+
     return string
 
 def get_normid(drug):
