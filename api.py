@@ -2,8 +2,7 @@ import requests, json
 import xml.etree.ElementTree as ET
 
 def get_drug(firstName, lastName):
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     # headers = {'Accept': 'application/json'}
     # req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
     #
@@ -17,12 +16,6 @@ def get_drug(firstName, lastName):
     # endIndex = r.text.find("dosageInstruction") - 99
     # string = r.text[beginIndex:endIndex]
 
-=======
-    #new medication code
->>>>>>> 18345dc965dd1b2e8aef3cbbc75d32ef10a792c6
-=======
-    #new medication code
->>>>>>> 8a7be398e6cc6e7e477f48044a6205e035a95a99
     headers = {'Accept': 'application/json'}
     req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
 
