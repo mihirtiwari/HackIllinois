@@ -20,7 +20,6 @@ def get_drug(firstName, lastName):
 
     for entries in array:
         meds.append(entries["resource"]["medicationReference"]["display"])
-    #------------------
 
     return meds
 
@@ -80,3 +79,17 @@ def numbers(medication):
     code = r.json()["SearchTermResponse"]["items"][0]["code"]
 
     return code
+
+def get_drug_name(drugs):
+    names = []
+    for d in drugs:
+        n = ''
+        if ',' in d:
+            n = d[d.index('(') + 1:d.index(',')]
+        else:
+            n = d[d.index('(') + 1:d.index(')')]
+            if ' ' in n:
+                n = n[0: n.index(' ')]
+        names.append(n)
+
+    return names

@@ -37,11 +37,12 @@
 		</div>
 		<div class="search">
 				<input id="search" type="text" class="form-control" name="search" placeholder="Medication...">
-				<button id="submit" type="button" class="btn" name="button">Submit</button>
+				<button id="submit" type="button" class="btn" name="button" onclick="checkMedication()">Submit</button>
 		</div>
-		<!-- <div class="alert alert-danger" role="alert" style="margin-top:50px; margin-left:10px;">
-			<strong>Oh snap!</strong> You should probably not prescribe this.
-		</div> -->
+
+		<div id="alerts">
+
+		</div>
 	</div>
 
 	<div class="medication col-md-3">
@@ -51,18 +52,43 @@
 	</div>
 	</div>
 
+	<!-- Users medication -->
 	<script type="text/javascript">
-		var drugs = localStorage.getItem('_drugs');
-		localStorage.removeItem('_drugs');
-		if(!drugs){
+	var drugs = localStorage.getItem('_drugs');
+	localStorage.removeItem('_drugs');
+	if(!drugs){
+	}
+	drugs = atob(drugs);
+	var medication = JSON.parse(drugs);
+	medication = medication.drug
+	for (var i = 0; i < medication.length; i++) {
+		generateCard(medication[i]);
+	}
+
+	// Send New Medication
+	function checkMedication() {
+		document.getElementById("alerts").innerHTML = ""
+
+		var drug;
+		var newMedication = document.getElementById("search").value;
+
+		for (var i = 0; i < medication.length; i++) {
+			try {
+				drug = medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")"));
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
+				xhttp.setRequestHeader("Content-type", "application/json");
+				xhttp.send();
+				var response = JSON.parse(xhttp.responseText);
+				generateAlert(response.description);
+
+				setTimeout(1000);
+			} catch(err){
+
+			}
 		}
-		drugs = atob(drugs);
-		var medication = JSON.parse(drugs);
-		if(medication.drug.substring(0,1) === "e"){
-			document.location.href = 'error/404.html';
-		} else {
-			generateCard(medication.drug);
-		}
+
+	}
 	</script>
 
 </body>
