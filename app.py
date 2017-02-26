@@ -14,9 +14,14 @@ def get_drugs_taken(firstName, lastName):
     drug = api.get_drug(firstName, lastName)
     return jsonify({'drug': drug})
 
-# @app.route('/combine', methods=['POST'])
-# def combined_drugs():
+@app.route('/combine/drug=<drug>&check_drug=<check_drug>', methods=['GET'])
+def combined_drugs(drug, check_drug):
+    meds = []
+    meds.append(drug)
+    meds.append(check_drug)
 
+    description = api.get_danger(meds)
+    return jsonify({'description': description})
 
 if __name__ == "__main__":
     app.run(debug=True)
