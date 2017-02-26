@@ -53,17 +53,24 @@
 	}
 	drugs = atob(drugs);
 	var medication = JSON.parse(drugs);
+	var id = medication.code;
 	medication = medication.drug
 	for (var i = 0; i < medication.length; i++) {
-		generateCard(medication[i]);
+		generateCard(id[i], medication[i]);
 	}
 
 	// Send New Medication
 	function checkMedication() {
 		document.getElementById("alerts").innerHTML = ""
-
+		var drug;
 		var newMedication = document.getElementById("search").value;
-		var drug = medication[0].substring(medication[0].indexOf("(") + 1, medication[0].indexOf(")"));
+		for (var i = 0; i < medication.length; i++) {
+			if(i != medication.lenght - 1){
+				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")")) + "/";
+			} else {
+				drug += medication[i].substring(medication[i].indexOf("(") + 1, medication[i].indexOf(")"));
+			}
+		}
 
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", "http://127.0.0.1:5000/combine/drug=" + drug + "&check_drug=" + newMedication, false);
