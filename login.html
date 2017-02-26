@@ -43,15 +43,19 @@
     var lastName = document.getElementById("lastName").value
     lastName = lastName.replace(/\s+/g, '');
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://127.0.0.1:5000/taken/firstName=" + firstName + "&lastName=" + lastName, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-    var response = JSON.parse(xhttp.responseText);
+    try{
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "http://127.0.0.1:5000/taken/firstName=" + firstName + "&lastName=" + lastName, false);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send();
+      var response = JSON.parse(xhttp.responseText);
+      saveName(firstName, lastName);
+      saveJSON(response);
+      document.location.href = 'index.html';
+    } catch (err) {
+      document.location.href = 'error/503.html'
+    }
 
-    saveName(firstName, lastName);
-    saveJSON(response);
-    document.location.href = 'index.html';
   }
   </script>
 </body>
