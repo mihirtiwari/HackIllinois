@@ -37,6 +37,6 @@ To run the flask server run the following command
 <strong>NOTE:</strong> When entering in drug names separate current drug names by 0
 
 ## Contributors
-Link to Contributors: <a href="CONTRIBUTORS.md">CONTRIBUTORS.md</a>
+Link to Contributors: <a href="Contributors.md">Contributors.md</a>
 <br>
-Link to Contributing: <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>
+Link to Contributing: <a href="Contributors.md">Contributing.md</a>
