@@ -1,7 +1,7 @@
 # Contributing to Prescription Merge Conflict (PMC)
 
 ## Contributor License Agreement
-By submitting a pull request you are guaranteed that your contributions are licensed under the MIT license. You must accept this policy in order to contribute to our project. 
+By submitting a pull request you are guaranteed that your contributions are licensed under the MIT license. You must accept this policy in order to contribute to our project. You are also presenting that you have a right to license your contribution to this project.
     
 ## New Feature Requirements
 * When you finish the feature contact either contributor about integrating it into the project
