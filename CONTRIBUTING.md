@@ -6,6 +6,10 @@ You are acknowledging that you have a right to license your contribution to this
 ## New Feature Requirements
 * When you finish the feature contact either contributor about integrating it into the project
 
+## Current Planned Features
+* Be able to use other patient data such as weight, age, sex, etc. to make a better prediction about drug interactions
+* Make a score for th severity of a drug interaction
+
 ## Style Guide / Coding conventions 
 
 ### Python 
