@@ -1,4 +1,5 @@
 import requests, json
+import xml.etree.ElementTree as ET
 
 def get_drug(firstName, lastName):
     headers = {'Accept': 'application/json'}
@@ -16,10 +17,26 @@ def get_drug(firstName, lastName):
 
     return string
 
-def get_danger(drug):
+def get_normid(drug):
     headers = {'Accept': 'application/json'}
+    drug = drug.lower()
     req = requests.get('https://rxnav.nlm.nih.gov/REST/rxcui?name=' + drug, headers)
 
-    print(req.text)
+    root = ET.fromstring(req.text)
+    normId = root[0][1].text
 
-get_danger('lipitor')
+    return normId
+
+def get_danger(drugs):
+    headers = {'Accept': 'application/json'}
+    req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + get_normid(drugs[0]) + '+' + get_normid(drugs[1]), headers)
+
+    response = req.json()
+
+    interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
+
+    interactionPair = interaction[0]['interactionPair'][0]
+
+    description = interactionPair['description']
+
+    return description
