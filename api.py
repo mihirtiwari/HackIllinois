@@ -28,7 +28,10 @@ def get_normid(drug):
     req = requests.get('https://rxnav.nlm.nih.gov/REST/rxcui?name=' + drug, headers)
 
     root = ET.fromstring(req.text)
-    normId = root[0][1].text
+    try:
+        normId = root[0][1].text
+    except IndexError:
+        normId = 00000
 
     return normId
 
@@ -41,22 +44,23 @@ def get_danger(drugs):
 
         normOne = get_normid(drug) #normId of drug to check
         normTwo = get_normid(check_drug) #normId of drug to be compared to
+        if (normOne not 0 && normTwo not 0):
     # normOne = get_normid(drugs[0])
     # normTwo = get_normid(drugs[1])
-        req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
+            req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
 
-        response = req.json()
-        description = ''
+            response = req.json()
+            description = ''
 
-        if 'fullInteractionTypeGroup' in response:
+            if 'fullInteractionTypeGroup' in response:
 
-            interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
+                interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
 
-            interactionPair = interaction[0]['interactionPair'][0]
+                interactionPair = interaction[0]['interactionPair'][0]
 
-            description = interactionPair['description']
+                description = interactionPair['description']
 
-            des[drug.capitalize() + ' and ' + check_drug.capitalize()] = description
+                des[drug.capitalize() + ' and ' + check_drug.capitalize()] = description
 
     return des
 
