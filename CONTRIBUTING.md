@@ -26,8 +26,5 @@ Email a contributor
 * Include description of bug
 * Steps that caused the bug
 
-## Bugs
-None
-
 ## Special Thanks
 Parts of this document were adapted from Hack Illinois' contributing API in <a href="https://github.com/HackIllinois">Hack Illinois</a>
