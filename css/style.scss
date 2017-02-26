@@ -1,3 +1,8 @@
+/*-----------------------
+
+Reset Page
+
+-----------------------*/
 html,body
 {
     width: 100%;
@@ -7,22 +12,23 @@ html,body
     overflow-x: hidden;
 }
 
+/*-----------------------
+
+Navbar
+
+-----------------------*/
+
 .navbar-default{
   color: #637dff;
   border-radius: 0 !important;
 }
 
-.header{
-  text-align: center;
-  padding: 60px;
-  margin-top: 60px;
-}
+/*-----------------------
 
-.row{
-  height: 100%;
-}
+Login Page
 
-// Login Page
+-----------------------*/
+
 h2{
   padding-bottom: 20px;
   padding-right: 10px;
@@ -46,7 +52,28 @@ h2{
   margin: -70px 0 0 -170px;
 }
 
-// Patient Information Page
+
+/*-----------------------
+
+Medication Page: Header
+
+-----------------------*/
+
+.header{
+  text-align: center;
+  padding: 60px;
+  margin-top: 60px;
+}
+
+.row{
+  height: 100%;
+}
+
+/*-----------------------
+
+Medication Search
+
+-----------------------*/
 
 .search{
   padding-right: 30px;
@@ -66,6 +93,21 @@ h2{
   margin-top: 70px;
 }
 
+.main{
+  height:94px;
+}
+
+#alerts{
+  height:50vh;
+  overflow: autos;
+}
+
+/*-----------------------
+
+Current Medication
+
+-----------------------*/
+
 .medication{
   padding: 60px;
   margin-top: 40px;
@@ -76,13 +118,4 @@ h2{
 #drugs{
   height:80vh;
   overflow:auto;
-}
-
-.main{
-  height:94px;
-}
-
-#alerts{
-  height:40vh;
-  overflow: auto;
 }
