@@ -15,3 +15,11 @@ def get_drug(firstName, lastName):
     string = r.text[beginIndex:endIndex]
 
     return string
+
+def get_danger(drug):
+    headers = {'Accept': 'application/json'}
+    req = requests.get('https://rxnav.nlm.nih.gov/REST/rxcui?name=' + drug, headers)
+
+    print(req.text)
+
+get_danger('lipitor')
