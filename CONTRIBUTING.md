@@ -1,7 +1,7 @@
 # Contributing to Prescription Merge Conflict (PMC)
 
 ## Contributor License Agreement
-By submitting a pull request you are guaranteed that your contributions are licensed under the MIT license. You must accept this policy in order to contribute to our project. You are also presenting that you have a right to license your contribution to this project.
+You are acknowledging that you have a right to license your contribution to this project. By submitting a pull request you are guaranteed that your contributions are licensed under the MIT license. You must accept this policy in order to contribute to our project. 
     
 ## New Feature Requirements
 * When you finish the feature contact either contributor about integrating it into the project
@@ -27,4 +27,4 @@ Email a contributor
 * Steps that caused the bug
 
 ## Special Thanks
-Parts of this document were adapted from Hack Illinois' contributing API in <a href="https://github.com/HackIllinois">Hack Illinois</a>
+Parts of this document were adapted from Hack Illinois' 2017 API Contributions guide at <a href="https://github.com/HackIllinois">Hack Illinois</a>
