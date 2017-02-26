@@ -57,7 +57,7 @@ def get_danger(drugs):
 
         normOne = get_normid(drug) #normId of drug to check
         normTwo = get_normid(check_drug) #normId of drug to be compared to
-        if (normOne is not 0 & normTwo is not 0):
+        if (normOne is not 0 and normTwo is not 0):
     # normOne = get_normid(drugs[0])
     # normTwo = get_normid(drugs[1])
             req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
