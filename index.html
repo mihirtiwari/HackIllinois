@@ -27,7 +27,7 @@
 			<h1><script>
 					var data = localStorage.getItem('_name');
 			    if (!data){
-						document.write("ERROR: Unknown User");
+						document.location.href = '404.html';
 					};
 			    localStorage.removeItem('_name');
 			    data = atob(data);
@@ -46,16 +46,24 @@
 
 	<div class="medication col-md-3">
 		<h3>Current Medication</h3>
-		<div class="drugs">
-			<div class="card">
-			  <div class="card-block">
-			    <h3 class="card-title">Adderall</h3>
-			    <p class="card-text">Fun facts about this drug</p>
-			  </div>
-			</div>
+		<div id="drugs">
 		</div>
 	</div>
 	</div>
+
+	<script type="text/javascript">
+		var drugs = localStorage.getItem('_drugs');
+		localStorage.removeItem('_drugs');
+		if(!drugs){
+		}
+		drugs = atob(drugs);
+		var medication = JSON.parse(drugs);
+		if(medication.drug.substring(0,1) === "e"){
+			document.location.href = '404.html';
+		} else {
+			generateCard(medication.drug);
+		}
+	</script>
 
 </body>
 </html>

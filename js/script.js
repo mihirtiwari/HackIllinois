@@ -1,22 +1,3 @@
-function login() {
-  var firstName = document.getElementById("firstName").value;
-  firstName = firstName.replace(/\s+/g, '');
-
-  var lastName = document.getElementById("lastName").value
-  lastName = lastName.replace(/\s+/g, '');
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://127.0.0.1:5000/taken/firstName=Jason&lastName=Argonaut", false);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send();
-  var response = JSON.parse(xhttp.responseText);
-
-  console.log(response);
-
-  saveName(firstName, lastName);
-  document.location.href = 'index.html';
-}
-
 function saveName(firstName, lastName) {
   var name = {
    First: firstName,
@@ -26,4 +7,19 @@ function saveName(firstName, lastName) {
   name = JSON.stringify(name);
   name = btoa(name);
   localStorage.setItem('_name', name);
+}
+
+function saveJSON(json) {
+  var j = JSON.stringify(json);
+  j = btoa(j);
+  localStorage.setItem('_drugs', j);
+}
+
+function generateCard(drug){
+  var title = drug.substring(drug.indexOf("(") + 1, drug.indexOf(")"));
+  var description = drug;
+  var card = "<div style=\"margin-top:20px; margin-right: 40px;\" class=\"card\"> <div class=\"card-block\"> <h3 class=\"card-title\">" + title + "</h3> <p class=\"card-text\">" + description + "</p></div></div>";
+
+  var div = document.getElementById("drugs");
+  div.innerHTML = div.innerHTML + card;
 }
