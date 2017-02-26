@@ -27,7 +27,7 @@
 			<h1><script>
 					var data = localStorage.getItem('_name');
 			    if (!data){
-						document.location.href = '404.html';
+						document.location.href = 'error/404.html';
 					};
 			    localStorage.removeItem('_name');
 			    data = atob(data);
@@ -36,7 +36,7 @@
 			</script></h1>
 		</div>
 		<div class="search">
-				<input id="search" type="text" class="form-control" name="search" placeholder="Search...">
+				<input id="search" type="text" class="form-control" name="search" placeholder="Medication...">
 				<button id="submit" type="button" class="btn" name="button">Submit</button>
 		</div>
 		<!-- <div class="alert alert-danger" role="alert" style="margin-top:50px; margin-left:10px;">
@@ -59,7 +59,7 @@
 		drugs = atob(drugs);
 		var medication = JSON.parse(drugs);
 		if(medication.drug.substring(0,1) === "e"){
-			document.location.href = '404.html';
+			document.location.href = 'error/404.html';
 		} else {
 			generateCard(medication.drug);
 		}
