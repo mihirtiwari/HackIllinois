@@ -8,6 +8,7 @@ Install pip and Python 2.7
 #### Libraries
 * A requirments.txt file has been provided to download all of the required python libraries 3
 * Download required libraries with the following command
+<br>
 <pre>pip install -r requirements.txt</pre>
 
 ## Usage
