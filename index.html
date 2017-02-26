@@ -51,6 +51,7 @@
 	</div>
 	</div>
 
+	<!-- Users medication -->
 	<script type="text/javascript">
 		var drugs = localStorage.getItem('_drugs');
 		localStorage.removeItem('_drugs');
@@ -61,8 +62,34 @@
 		if(medication.drug.substring(0,1) === "e"){
 			document.location.href = 'error/404.html';
 		} else {
+			for (var i = 0; i < array.length; i++) {
+				generateCard(array[i]);
+			}
 			generateCard(medication.drug);
 		}
+	</script>
+
+	<!-- Send New Medication -->
+	<script type="text/javascript">
+	function login() {
+		var firstName = document.getElementById("firstName").value;
+		firstName = firstName.replace(/\s+/g, '');
+
+		var lastName = document.getElementById("lastName").value;
+		lastName = lastName.replace(/\s+/g, '');
+
+		try{
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "http://127.0.0.1:5000/", false);
+			xhttp.setRequestHeader("Content-type", "application/json");
+			xhttp.send();
+			var response = JSON.parse(xhttp.responseText);
+			document.location.href = 'index.html';
+		} catch (err) {
+			document.location.href = 'error/503.html'
+		}
+
+	}
 	</script>
 
 </body>
