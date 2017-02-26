@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 def get_drug(firstName, lastName):
 <<<<<<< HEAD
+<<<<<<< HEAD
     # headers = {'Accept': 'application/json'}
     # req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
     #
@@ -19,6 +20,9 @@ def get_drug(firstName, lastName):
 =======
     #new medication code
 >>>>>>> 18345dc965dd1b2e8aef3cbbc75d32ef10a792c6
+=======
+    #new medication code
+>>>>>>> 8a7be398e6cc6e7e477f48044a6205e035a95a99
     headers = {'Accept': 'application/json'}
     req = requests.get("https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=" + lastName + "&given=" + firstName, headers=headers)
 
@@ -95,3 +99,17 @@ def numbers(medication):
     code = r.json()["SearchTermResponse"]["items"][0]["code"]
 
     return code
+
+def get_drug_name(drugs):
+    names = []
+    for d in drugs:
+        n = ''
+        if ',' in d:
+            n = d[d.index('(') + 1:d.index(',')]
+        else:
+            n = d[d.index('(') + 1:d.index(')')]
+            if ' ' in n:
+                n = n[0: n.index(' ')]
+        names.append(n)
+
+    return names

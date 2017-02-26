@@ -12,7 +12,14 @@ def index():
 @app.route('/taken/firstName=<firstName>&lastName=<lastName>', methods=['GET'])
 def get_drugs_taken(firstName, lastName):
     drug = api.get_drug(firstName, lastName)
-    return jsonify({'drug': drug})
+    names = api.get_drug_name(drug)
+
+    code = []
+    for n in names:
+        c = api.numbers(n)
+        code.append(c)
+
+    return jsonify({'num_drugs': len(drug),'drug': drug, 'code': code})
 
 @app.route('/combine/drug=<drug>&check_drug=<check_drug>', methods=['GET'])
 def combined_drugs(drug, check_drug):
@@ -22,12 +29,6 @@ def combined_drugs(drug, check_drug):
 
     description = api.get_danger(meds)
     return jsonify({'description': description})
-
-@app.route('/code/med=<medication>', methods=['GET'])
-def code(medication):
-    code = api.numbers(medication)
-
-    return jsonify({'code': code})
 
 if __name__ == "__main__":
     app.run(debug=True)
