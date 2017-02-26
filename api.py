@@ -47,20 +47,26 @@ def get_normid(drug):
 
 def get_danger(drugs):
     headers = {'Accept': 'application/json'}
-    normOne = get_normid(drugs[0])
-    normTwo = get_normid(drugs[1])
-    print(normOne)
-    req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
+    des = {}
+    for drug in range(0, len(drugs) - 1):
+        check_drug = drugs[len(drugs) - 1]
+        normOne = get_normid(drug) #normId of drug to check
+        normTwo = get_normid(check_drug) #normId of drug to be compared to
+    # normOne = get_normid(drugs[0])
+    # normTwo = get_normid(drugs[1])
+        req = requests.get('https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=' + normOne + '+' + normTwo, headers)
 
-    response = req.json()
+        response = req.json()
 
-    interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
+        interaction = response['fullInteractionTypeGroup'][0]['fullInteractionType']
 
-    interactionPair = interaction[0]['interactionPair'][0]
+        interactionPair = interaction[0]['interactionPair'][0]
 
-    description = interactionPair['description']
+        description = interactionPair['description']
 
-    return description
+        des[drug + '+' + check_drug] = description
+
+    return des
 
 def numbers(medication):
     base_url = "http://184.73.124.73:80/PortalWebService/api/v2/product/allergenIT/search"
