@@ -30,4 +30,4 @@ Email a contributor
 None
 
 ## Special Thanks
-Special thanks to Hack Illinois contributing web api in <a href="https://github.com/HackIllinois">Hack Illinois</a>
+Parts of this document were adapted from Hack Illinois' contributing API in <a href="https://github.com/HackIllinois">Hack Illinois</a>
